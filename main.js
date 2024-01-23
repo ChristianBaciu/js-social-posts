@@ -1,7 +1,7 @@
 const posts = [
     {
         "id": 1,
-        "content": "Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.",
+        "content": "CPlaceat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.",
         "media": "https://unsplash.it/600/300?image=171",
         "author": {
             "name": "Phil Mangione",
@@ -64,9 +64,9 @@ for (let i = 0; i < posts.length; i++){
     console.log(elemento.media)
     console.log(elemento.author)
     
-    // dentro author
+    // figlio di author
     console.log(elemento.author.name)
-    // dentro author
+    // figlio di author
     console.log(elemento.author.image)
 
     console.log(elemento.likes)
@@ -89,7 +89,7 @@ for (let i = 0; i < posts.length; i++){
                     </div>                    
                 </div>
             </div>
-            <div class="post__text">Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.</div>
+            <div class="post__text">${elemento.content}</div>
             <div class="post__image">
                 <img src="${elemento.media}" alt="">
             </div>
@@ -109,7 +109,27 @@ for (let i = 0; i < posts.length; i++){
         </div>
 
     </div>
-
-
     `
-}  
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    const clickLike = document.querySelectorAll('.js-like-button')
+
+    clickLike.forEach(function (bottone){
+        bottone.addEventListener('click', function(event){
+            // con preventDefault impedisce il ricaricamento della pagina
+            event.preventDefault()
+            
+            // attiva o rimuove la classe like-button--liked
+            bottone.classList.toggle('like-button--liked')
+
+            // al click cambia colore
+            if(bottone.classList.contains('like-button--liked')){
+                bottone.style.color = '#0CD977'
+            }else{
+                bottone.style.color = ''
+            }
+
+        })
+    })
+})
